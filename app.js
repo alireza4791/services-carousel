@@ -43,4 +43,34 @@ carouselServiceCards.forEach((card, index) => {
             displayImgPart.removeChild(displayImgPart.children[0]);
         }, 800);
     });
+
+    card.addEventListener('touchstart', () => {
+        placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
+        // placeHolderCard = card.querySelector('.carousel-img-wrapper');
+        zIndexCounter++;
+        placeHolderCard.style.zIndex = `${zIndexCounter}`;
+        placeHolderCard.style.left = '10px'
+        placeHolderCard.style.top = '10px'
+        placeHolderCard.style.width = 'calc(100% - 20px)'
+        placeHolderCard.style.height = 'calc(100% - 20px)'
+        placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
+        placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
+        placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
+
+        serviceCardTitle.innerText = cardTitles[index];
+        serviceCardText.innerText = cardText[index];
+
+        displayImgPart.appendChild(placeHolderCard);
+
+        // displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
+        // displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+
+        serviceCarouselCardTimeout = setTimeout(() => {
+            displayImgPart.querySelectorAll('.carousel-img-container')[displayImgPart.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
+        }, 100);
+
+        serviceCarouselCardTimeout = setTimeout(() => {
+            displayImgPart.removeChild(displayImgPart.children[0]);
+        }, 800);
+    });
 })

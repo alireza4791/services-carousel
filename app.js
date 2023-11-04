@@ -2,6 +2,8 @@
 let carouselServiceCards = document.querySelectorAll('.carousel-img-card');
 let serviceCardTitle = document.querySelector('.service-card-title');
 let serviceCardText = document.querySelector('.service-card-text');
+let serviceDisplayImg = document.querySelector('.display-image');
+let displayImgPart = document.querySelector('.display-img-part');
 
 
 const cardTitles = ['london persian Restaurant project1', 'london persian Restaurant project2', 'london persian Restaurant project3', 'london persian Restaurant project4', 'london persian Restaurant project5', 'london persian Restaurant project6', 'london persian Restaurant project7', 'london persian Restaurant project8', 'london persian Restaurant project9', 'london persian Restaurant project10'];
@@ -12,5 +14,7 @@ carouselServiceCards.forEach((card, index) => {
     card.addEventListener('click', () => {
         serviceCardTitle.innerText = cardTitles[index];
         serviceCardText.innerText = cardText[index];
-    })
+
+        displayImgPart.appendChild(card);
+    });
 })

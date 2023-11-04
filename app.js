@@ -13,7 +13,7 @@ let placeHolderCard;
 let zIndexCounter = 0;
 
 carouselServiceCards.forEach((card, index) => {
-    card.addEventListener('click', () => {
+    card.addEventListener('mousemove', () => {
         placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
         // placeHolderCard = card.querySelector('.carousel-img-wrapper');
         zIndexCounter++;
@@ -23,12 +23,15 @@ carouselServiceCards.forEach((card, index) => {
         placeHolderCard.style.width = 'calc(100% - 20px)'
         placeHolderCard.style.height = 'calc(100% - 20px)'
         placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
+        placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
+        laceHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
 
         serviceCardTitle.innerText = cardTitles[index];
         serviceCardText.innerText = cardText[index];
 
         displayImgPart.appendChild(placeHolderCard);
         displayImgPart.removeChild(displayImgPart.children[0]);
+        displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
         displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
     });
 })

@@ -36,7 +36,7 @@ carouselServiceCards.forEach((card, index) => {
         // displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
 
         serviceCarouselCardTimeout = setTimeout(() => {
-            displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+            displayImgPart.querySelectorAll('.carousel-img-container')[displayImgPart.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
         }, 100);
 
         serviceCarouselCardTimeout = setTimeout(() => {

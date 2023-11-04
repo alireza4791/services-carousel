@@ -11,6 +11,7 @@ const cardText = ['Offices today are not what they once used to be. The A-select
 
 let placeHolderCard;
 let zIndexCounter = 0;
+let serviceCarouselCardTimeout;
 
 carouselServiceCards.forEach((card, index) => {
     card.addEventListener('mousemove', () => {
@@ -30,8 +31,12 @@ carouselServiceCards.forEach((card, index) => {
         serviceCardText.innerText = cardText[index];
 
         displayImgPart.appendChild(placeHolderCard);
-        displayImgPart.removeChild(displayImgPart.children[0]);
+
         displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
         displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+
+        serviceCarouselCardTimeout = setTimeout(() => {
+            displayImgPart.removeChild(displayImgPart.children[0]);
+        }, 700);
     });
 })

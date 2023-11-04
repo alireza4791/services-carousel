@@ -14,7 +14,8 @@ let zIndexCounter = 0;
 
 carouselServiceCards.forEach((card, index) => {
     card.addEventListener('click', () => {
-        placeHolderCard = card.querySelector('.carousel-img-wrapper');
+        placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
+        // placeHolderCard = card.querySelector('.carousel-img-wrapper');
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
         // placeHolderCard.querySelector('.carousel-img-container');

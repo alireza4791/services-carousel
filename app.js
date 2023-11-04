@@ -14,7 +14,7 @@ let zIndexCounter = 0;
 let serviceCarouselCardTimeout;
 
 carouselServiceCards.forEach((card, index) => {
-    card.addEventListener('mousemove', () => {
+    card.addEventListener('mouseover', () => {
         placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
         // placeHolderCard = card.querySelector('.carousel-img-wrapper');
         zIndexCounter++;

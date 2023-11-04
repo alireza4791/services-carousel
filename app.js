@@ -25,7 +25,7 @@ carouselServiceCards.forEach((card, index) => {
         placeHolderCard.style.height = 'calc(100% - 20px)'
         placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
         placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
-        laceHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
+        placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
 
         serviceCardTitle.innerText = cardTitles[index];
         serviceCardText.innerText = cardText[index];

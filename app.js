@@ -18,12 +18,17 @@ carouselServiceCards.forEach((card, index) => {
         // placeHolderCard = card.querySelector('.carousel-img-wrapper');
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
-        // placeHolderCard.querySelector('.carousel-img-container');
+        placeHolderCard.style.left = '10px'
+        placeHolderCard.style.top = '10px'
+        placeHolderCard.style.width = 'calc(100% - 20px)'
+        placeHolderCard.style.height = 'calc(100% - 20px)'
+        placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
 
         serviceCardTitle.innerText = cardTitles[index];
         serviceCardText.innerText = cardText[index];
 
         displayImgPart.appendChild(placeHolderCard);
         displayImgPart.removeChild(displayImgPart.children[0]);
+        displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
     });
 })

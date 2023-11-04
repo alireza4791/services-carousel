@@ -10,11 +10,15 @@ const cardTitles = ['london persian Restaurant project1', 'london persian Restau
 const cardText = ['Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.1', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.2', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.3', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.4', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.5', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.6', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.7', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.8', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.9', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.10'];
 
 let placeHolderCard;
+let zIndexCounter = 0;
 
 carouselServiceCards.forEach((card, index) => {
     card.addEventListener('click', () => {
         placeHolderCard = card.querySelector('.carousel-img-wrapper');
+        zIndexCounter++;
+        placeHolderCard.style.zIndex = `${zIndexCounter}`;
         // placeHolderCard.querySelector('.carousel-img-container');
+
         serviceCardTitle.innerText = cardTitles[index];
         serviceCardText.innerText = cardText[index];
 

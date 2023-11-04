@@ -32,11 +32,15 @@ carouselServiceCards.forEach((card, index) => {
 
         displayImgPart.appendChild(placeHolderCard);
 
-        displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
-        displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+        // displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
+        // displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+
+        serviceCarouselCardTimeout = setTimeout(() => {
+            displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+        }, 100);
 
         serviceCarouselCardTimeout = setTimeout(() => {
             displayImgPart.removeChild(displayImgPart.children[0]);
-        }, 700);
+        }, 800);
     });
 })

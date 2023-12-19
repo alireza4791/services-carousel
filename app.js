@@ -1,7 +1,7 @@
 //carousel
-let carouselServiceCards = document.querySelectorAll('.carousel-img-card');
-let serviceCardTitle = document.querySelector('.service-card-title');
-let serviceCardText = document.querySelector('.service-card-text');
+let carouselServiceCards = document.querySelectorAll('.gallery-slide-wrap');
+let serviceCardTitle = document.querySelector('.gallery-info__title');
+let serviceCardText = document.querySelector('.gallery-info__subtitle');
 let serviceDisplayImg = document.querySelector('.display-image');
 let displayImgPart = document.querySelector('.display-img-part');
 
@@ -15,8 +15,7 @@ let serviceCarouselCardTimeout;
 
 carouselServiceCards.forEach((card, index) => {
     card.addEventListener('mouseover', () => {
-        placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
-        // placeHolderCard = card.querySelector('.carousel-img-wrapper');
+        placeHolderCard = card.querySelector('.gallery-img').cloneNode(true);
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
         placeHolderCard.style.left = '10px'
@@ -31,9 +30,6 @@ carouselServiceCards.forEach((card, index) => {
         serviceCardText.innerText = cardText[index];
 
         displayImgPart.appendChild(placeHolderCard);
-
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
 
         serviceCarouselCardTimeout = setTimeout(() => {
             displayImgPart.querySelectorAll('.carousel-img-container')[displayImgPart.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
@@ -45,8 +41,8 @@ carouselServiceCards.forEach((card, index) => {
     });
 
     card.addEventListener('touchstart', () => {
-        placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
-        // placeHolderCard = card.querySelector('.carousel-img-wrapper');
+        placeHolderCard = card.querySelector('.gallery-img').cloneNode(true);
+
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
         placeHolderCard.style.left = '10px'
@@ -61,9 +57,6 @@ carouselServiceCards.forEach((card, index) => {
         serviceCardText.innerText = cardText[index];
 
         displayImgPart.appendChild(placeHolderCard);
-
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
 
         serviceCarouselCardTimeout = setTimeout(() => {
             displayImgPart.querySelectorAll('.carousel-img-container')[displayImgPart.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';

@@ -67,3 +67,74 @@ carouselServiceCards.forEach((card, index) => {
         }, 800);
     });
 })
+
+
+
+
+
+  //gallery slider
+  const slider = document.querySelector(".is--items");
+  let wrapper = document.querySelector(".is--grid-container");
+  const firstCardWidth = slider.querySelector(".is--item").offsetWidth;
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  let timeoutId;
+  let isAutoPlay = false;
+
+  slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    slider.classList.add("active");
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    cancelMomentumTracking();
+  });
+
+  slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.classList.remove("active");
+  });
+
+  slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.classList.remove("active");
+    beginMomentumTracking();
+  });
+
+  slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 3; //scroll-fast
+    var prevScrollLeft = slider.scrollLeft;
+    slider.scrollLeft = scrollLeft - walk;
+    velX = slider.scrollLeft - prevScrollLeft;
+  });
+
+  const autoPlay = () => {
+    if (window.innerWidth < 800 || !isAutoPlay) return;
+    timeoutId = setTimeout(() => (slider.scrollLeft += firstCardWidth), 2500);
+  };
+  autoPlay();
+
+  var velX = 0;
+  var momentumID;
+
+  slider.addEventListener("wheel", (e) => {
+    cancelMomentumTracking();
+  });
+
+  function beginMomentumTracking() {
+    cancelMomentumTracking();
+    momentumID = requestAnimationFrame(momentumLoop);
+  }
+  function cancelMomentumTracking() {
+    cancelAnimationFrame(momentumID);
+  }
+  function momentumLoop() {
+    slider.scrollLeft += velX;
+    velX *= 0.955;
+    if (Math.abs(velX) > 0.5) {
+      momentumID = requestAnimationFrame(momentumLoop);
+    }
+  }

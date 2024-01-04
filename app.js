@@ -13,7 +13,7 @@ let currentDisplayImgIndex = 0;
 
 carouselServiceCards.forEach((card, index) => {
     card.addEventListener('mouseover', () => {
-        placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
+        placeHolderCard = card.querySelector('.gallery-img').cloneNode(true);
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
         placeHolderCard.style.left = '10px'
@@ -55,7 +55,7 @@ carouselServiceCards.forEach((card, index) => {
     });
 
     card.addEventListener('touchstart', () => {
-        placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
+        placeHolderCard = card.querySelector('.gallery-img').cloneNode(true);
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
         placeHolderCard.style.left = '10px'

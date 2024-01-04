@@ -26,17 +26,17 @@ carouselServiceCards.forEach((card, index) => {
 
         serviceCardTitle.forEach((card, cardIndex) => {
             if (cardIndex === index) {
-                card.classList.add('active');
+                card.classList.add('is--active');
             } else {
-                card.classList.remove('active');
+                card.classList.remove('is--active');
             }
         })
 
         serviceCardText.forEach((card, cardIndex) => {
             if (cardIndex === index) {
-                card.classList.add('active');
+                card.classList.add('is--active');
             } else {
-                card.classList.remove('active');
+                card.classList.remove('is--active');
             }
         });
 
@@ -68,17 +68,17 @@ carouselServiceCards.forEach((card, index) => {
 
         serviceCardTitle.forEach((card, cardIndex) => {
             if (cardIndex === index) {
-                card.classList.add('active');
+                card.classList.add('is--active');
             } else {
-                card.classList.remove('active');
+                card.classList.remove('is--active');
             }
         })
 
         serviceCardText.forEach((card, cardIndex) => {
             if (cardIndex === index) {
-                card.classList.add('active');
+                card.classList.add('is--active');
             } else {
-                card.classList.remove('active');
+                card.classList.remove('is--active');
             }
         });
 

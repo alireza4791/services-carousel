@@ -1,73 +1,208 @@
-//carousel
-let carouselServiceCards = document.querySelectorAll('.gallery-slide-wrap');
-let serviceCardTitle = document.querySelector('.gallery-info__title');
-let serviceCardText = document.querySelector('.gallery-info__subtitle');
-let serviceDisplayImg = document.querySelector('.display-image');
-let displayImgPart = document.querySelector('.display-img-part');
+	//carousel
+	let carouselServiceCards = document.querySelectorAll('.carousel-img-card');
+	let serviceCardTitle = document.querySelectorAll('.service-card-title');
+	let serviceCardText = document.querySelectorAll('.service-card-text');
+	let serviceDisplayImg = document.querySelector('.display-image');
+	let displayImgPart = document.querySelectorAll('.display-img-part');
+	let tabContainer = document.querySelector('.w-tab-pane');
+	let tabOptions = document.querySelectorAll('.tab-option-container');
 
+	let placeHolderCard;
+	let zIndexCounter = 0;
+	let serviceCarouselCardTimeout;
+	let currentDisplayImg;
+	let currentDisplayImgIndex = 0;
 
-const cardTitles = ['london persian Restaurant project1', 'london persian Restaurant project2', 'london persian Restaurant project3', 'london persian Restaurant project4', 'london persian Restaurant project5', 'london persian Restaurant project6', 'london persian Restaurant project7', 'london persian Restaurant project8', 'london persian Restaurant project9', 'london persian Restaurant project10'];
-const cardText = ['Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.1', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.2', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.3', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.4', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.5', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.6', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.7', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.8', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.9', 'Offices today are not what they once used to be. The A-select is a next-generation office building, designed to inspire, connect and accelerate tomorrow’s working world. Our three-dimensional.10'];
+	tabOptions.forEach((tab, index) => {
+		tab.addEventListener('click', () => {
+			if (index != 0) {
+				let tabLoopCounter = 0;
+				for (let i = 0; i < index; i++) {
+					tabLoopCounter += parseInt(tabOptions[i].dataset.tabSize);
+				}
+				tabLoopCounter++;
 
-let placeHolderCard;
-let zIndexCounter = 0;
-let serviceCarouselCardTimeout;
+				serviceCardTitle.forEach((card, cardIndex) => {
+					if (cardIndex === tabLoopCounter) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				})
 
-carouselServiceCards.forEach((card, index) => {
-    card.addEventListener('mouseover', () => {
-        placeHolderCard = card.querySelector('.gallery-img').cloneNode(true);
-        zIndexCounter++;
-        placeHolderCard.style.zIndex = `${zIndexCounter}`;
-        placeHolderCard.style.left = '10px'
-        placeHolderCard.style.top = '10px'
-        placeHolderCard.style.width = 'calc(100% - 20px)'
-        placeHolderCard.style.height = 'calc(100% - 20px)'
-        placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
-        placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
-        placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
+				serviceCardText.forEach((card, cardIndex) => {
+					if (cardIndex === tabLoopCounter) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				});
+			}
+			else {
+				serviceCardTitle.forEach((card, cardIndex) => {
+					if (cardIndex === index) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				})
 
-        serviceCardTitle.innerText = cardTitles[index];
-        serviceCardText.innerText = cardText[index];
+				serviceCardText.forEach((card, cardIndex) => {
+					if (cardIndex === index) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				});
+			}
+			currentDisplayImgIndex = index;
+		})
 
-        displayImgPart.appendChild(placeHolderCard);
+		tab.addEventListener('touchstart', () => {
+			if (index != 0) {
+				let tabLoopCounter = 0;
+				for (let i = 0; i < index; i++) {
+					tabLoopCounter += parseInt(tabOptions[i].dataset.tabSize);
+				}
+				tabLoopCounter++;
 
-        serviceCarouselCardTimeout = setTimeout(() => {
-            displayImgPart.querySelectorAll('.carousel-img-container')[displayImgPart.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
-        }, 100);
+				serviceCardTitle.forEach((card, cardIndex) => {
+					if (cardIndex === tabLoopCounter) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				})
 
-        serviceCarouselCardTimeout = setTimeout(() => {
-            displayImgPart.removeChild(displayImgPart.children[0]);
-        }, 800);
-    });
+				serviceCardText.forEach((card, cardIndex) => {
+					if (cardIndex === tabLoopCounter) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				});
+			}
+			else {
+				serviceCardTitle.forEach((card, cardIndex) => {
+					if (cardIndex === index) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				})
 
-    card.addEventListener('touchstart', () => {
-        placeHolderCard = card.querySelector('.gallery-img').cloneNode(true);
+				serviceCardText.forEach((card, cardIndex) => {
+					if (cardIndex === index) {
+						card.classList.add('active');
+					} else {
+						card.classList.remove('active');
+					}
+				});
+			}
+			currentDisplayImgIndex = index;
+		})
 
-        zIndexCounter++;
-        placeHolderCard.style.zIndex = `${zIndexCounter}`;
-        placeHolderCard.style.left = '10px'
-        placeHolderCard.style.top = '10px'
-        placeHolderCard.style.width = 'calc(100% - 20px)'
-        placeHolderCard.style.height = 'calc(100% - 20px)'
-        placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
-        placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
-        placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
+	})
 
-        serviceCardTitle.innerText = cardTitles[index];
-        serviceCardText.innerText = cardText[index];
+	carouselServiceCards.forEach((card, index) => {
+		card.addEventListener('mouseover', () => {
+			placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
+			// placeHolderCard = card.querySelector('.carousel-img-wrapper');
+			zIndexCounter++;
+			placeHolderCard.style.zIndex = `${zIndexCounter}`;
+			placeHolderCard.style.left = '10px'
+			placeHolderCard.style.top = '10px'
+			placeHolderCard.style.width = 'calc(100% - 20px)'
+			placeHolderCard.style.height = 'calc(100% - 20px)'
+			placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
+			placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
+			placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
 
-        displayImgPart.appendChild(placeHolderCard);
+			// serviceCardTitle.innerText = cardTitles[index];
 
-        serviceCarouselCardTimeout = setTimeout(() => {
-            displayImgPart.querySelectorAll('.carousel-img-container')[displayImgPart.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
-        }, 100);
+			serviceCardTitle.forEach((card, cardIndex) => {
+				if (cardIndex === index) {
+					card.classList.add('active');
+				} else {
+					card.classList.remove('active');
+				}
+			})
+			// serviceCardText.innerText = cardText[index];
 
-        serviceCarouselCardTimeout = setTimeout(() => {
-            displayImgPart.removeChild(displayImgPart.children[0]);
-        }, 800);
-    });
-})
+			serviceCardText.forEach((card, cardIndex) => {
+				if (cardIndex === index) {
+					card.classList.add('active');
+				} else {
+					card.classList.remove('active');
+				}
+			});
 
+			currentDisplayImg = displayImgPart[currentDisplayImgIndex]
+			currentDisplayImg.appendChild(placeHolderCard);
+
+			// displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
+			// displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+
+			serviceCarouselCardTimeout = setTimeout(() => {
+				currentDisplayImg.querySelectorAll('.carousel-img-container')[currentDisplayImg.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
+			}, 100);
+
+			serviceCarouselCardTimeout = setTimeout(() => {
+				if (currentDisplayImg.children[1]) {
+					currentDisplayImg.removeChild(currentDisplayImg.children[0]);
+				}
+			}, 800);
+		});
+
+		card.addEventListener('touchstart', () => {
+			placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
+			// placeHolderCard = card.querySelector('.carousel-img-wrapper');
+			zIndexCounter++;
+			placeHolderCard.style.zIndex = `${zIndexCounter}`;
+			placeHolderCard.style.left = '10px'
+			placeHolderCard.style.top = '10px'
+			placeHolderCard.style.width = 'calc(100% - 20px)'
+			placeHolderCard.style.height = 'calc(100% - 20px)'
+			placeHolderCard.querySelector('.carousel-img-container').style.height = '0%';
+			placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
+			placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
+
+			// serviceCardTitle.innerText = cardTitles[index];
+
+			serviceCardTitle.forEach((card, cardIndex) => {
+				if (cardIndex === index) {
+					card.classList.add('active');
+				} else {
+					card.classList.remove('active');
+				}
+			})
+			// serviceCardText.innerText = cardText[index];
+
+			serviceCardText.forEach((card, cardIndex) => {
+				if (cardIndex === index) {
+					card.classList.add('active');
+				} else {
+					card.classList.remove('active');
+				}
+			});
+
+			currentDisplayImg = displayImgPart[currentDisplayImgIndex]
+			currentDisplayImg.appendChild(placeHolderCard);
+
+			// displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
+			// displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
+
+			serviceCarouselCardTimeout = setTimeout(() => {
+				currentDisplayImg.querySelectorAll('.carousel-img-container')[currentDisplayImg.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
+			}, 100);
+
+			serviceCarouselCardTimeout = setTimeout(() => {
+				if (currentDisplayImg.children[1]) {
+					currentDisplayImg.removeChild(currentDisplayImg.children[0]);
+				}
+			}, 800);
+		});
+	})
 
 
 

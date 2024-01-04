@@ -1,7 +1,7 @@
 	//carousel
 	let carouselServiceCards = document.querySelectorAll('.gallery-slide-wrap');
-	let serviceCardTitle = document.querySelectorAll('.service-card-title');
-	let serviceCardText = document.querySelectorAll('.service-card-text');
+	let serviceCardTitle = document.querySelectorAll('.gallery-info__title');
+	let serviceCardText = document.querySelectorAll('.gallery-info__subtitle');
 	let serviceDisplayImg = document.querySelector('.display-image');
 	let displayImgPart = document.querySelectorAll('.display-img-part');
 	let tabContainer = document.querySelector('.w-tab-pane');

@@ -1,5 +1,5 @@
 	//carousel
-	let carouselServiceCards = document.querySelectorAll('.carousel-img-card');
+	let carouselServiceCards = document.querySelectorAll('.gallery-slide-wrap');
 	let serviceCardTitle = document.querySelectorAll('.service-card-title');
 	let serviceCardText = document.querySelectorAll('.service-card-text');
 	let serviceDisplayImg = document.querySelector('.display-image');

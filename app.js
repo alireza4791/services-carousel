@@ -14,6 +14,19 @@ let serviceCarouselCardTimeout;
 let currentDisplayImg;
 let currentDisplayImgIndex = 0;
 
+currentDisplayImg = displayImgPart[currentDisplayImgIndex]
+currentDisplayImg.appendChild(placeHolderCard);
+
+serviceCarouselCardTimeout = setTimeout(() => {
+    currentDisplayImg.querySelectorAll('.carousel-img-container')[currentDisplayImg.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
+}, 100);
+
+serviceCarouselCardTimeout = setTimeout(() => {
+    if (currentDisplayImg.children[1]) {
+        currentDisplayImg.removeChild(currentDisplayImg.children[0]);
+    }
+}, 800);
+
 carouselServiceCards.forEach((card, index) => {
     card.addEventListener('mouseover', () => {
         placeHolderCard = card.querySelector('.gallery-img').cloneNode(true);

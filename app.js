@@ -5,6 +5,9 @@ let serviceCardText = document.querySelectorAll('.gallery-info__subtitle');
 let serviceDisplayImg = document.querySelector('.display-image');
 let displayImgPart = document.querySelectorAll('.display-img-part');
 
+serviceCardTitle[0].classList.add("active");
+serviceCardText[0].classList.add("active");
+
 let placeHolderCard;
 let zIndexCounter = 0;
 let serviceCarouselCardTimeout;

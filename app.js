@@ -14,11 +14,9 @@ let serviceCarouselCardTimeout;
 let currentDisplayImg;
 let currentDisplayImgIndex = 0;
 
+placeHolderCard = carouselServiceCards[0].querySelector('.gallery-img').cloneNode(true);
 currentDisplayImg = displayImgPart[currentDisplayImgIndex];
-console.log(currentDisplayImg, 'currentDisplayImg');
-console.log(currentDisplayImgIndex, 'currentDisplayImgIndex');
 currentDisplayImg.appendChild(placeHolderCard);
-
 serviceCarouselCardTimeout = setTimeout(() => {
     currentDisplayImg.querySelectorAll('.carousel-img-container')[currentDisplayImg.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
 }, 100);

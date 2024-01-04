@@ -14,7 +14,6 @@ let currentDisplayImgIndex = 0;
 carouselServiceCards.forEach((card, index) => {
     card.addEventListener('mouseover', () => {
         placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
-        // placeHolderCard = card.querySelector('.carousel-img-wrapper');
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
         placeHolderCard.style.left = '10px'
@@ -25,8 +24,6 @@ carouselServiceCards.forEach((card, index) => {
         placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
         placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
 
-        // serviceCardTitle.innerText = cardTitles[index];
-
         serviceCardTitle.forEach((card, cardIndex) => {
             if (cardIndex === index) {
                 card.classList.add('active');
@@ -34,7 +31,6 @@ carouselServiceCards.forEach((card, index) => {
                 card.classList.remove('active');
             }
         })
-        // serviceCardText.innerText = cardText[index];
 
         serviceCardText.forEach((card, cardIndex) => {
             if (cardIndex === index) {
@@ -46,9 +42,6 @@ carouselServiceCards.forEach((card, index) => {
 
         currentDisplayImg = displayImgPart[currentDisplayImgIndex]
         currentDisplayImg.appendChild(placeHolderCard);
-
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
 
         serviceCarouselCardTimeout = setTimeout(() => {
             currentDisplayImg.querySelectorAll('.carousel-img-container')[currentDisplayImg.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
@@ -63,7 +56,6 @@ carouselServiceCards.forEach((card, index) => {
 
     card.addEventListener('touchstart', () => {
         placeHolderCard = card.querySelector('.carousel-img-wrapper').cloneNode(true);
-        // placeHolderCard = card.querySelector('.carousel-img-wrapper');
         zIndexCounter++;
         placeHolderCard.style.zIndex = `${zIndexCounter}`;
         placeHolderCard.style.left = '10px'
@@ -74,8 +66,6 @@ carouselServiceCards.forEach((card, index) => {
         placeHolderCard.querySelector('.carousel-img-container').style.top = '0';
         placeHolderCard.querySelector('.carousel-img-container').style.bottom = 'auto';
 
-        // serviceCardTitle.innerText = cardTitles[index];
-
         serviceCardTitle.forEach((card, cardIndex) => {
             if (cardIndex === index) {
                 card.classList.add('active');
@@ -83,7 +73,6 @@ carouselServiceCards.forEach((card, index) => {
                 card.classList.remove('active');
             }
         })
-        // serviceCardText.innerText = cardText[index];
 
         serviceCardText.forEach((card, cardIndex) => {
             if (cardIndex === index) {
@@ -96,9 +85,6 @@ carouselServiceCards.forEach((card, index) => {
         currentDisplayImg = displayImgPart[currentDisplayImgIndex]
         currentDisplayImg.appendChild(placeHolderCard);
 
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '0%';
-        // displayImgPart.querySelector('.carousel-img-container').style.height = '100%';
-
         serviceCarouselCardTimeout = setTimeout(() => {
             currentDisplayImg.querySelectorAll('.carousel-img-container')[currentDisplayImg.querySelectorAll('.carousel-img-container').length - 1].style.height = '100%';
         }, 100);
@@ -110,7 +96,6 @@ carouselServiceCards.forEach((card, index) => {
         }, 800);
     });
 })
-
 
 
 

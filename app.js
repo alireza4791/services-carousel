@@ -14,7 +14,9 @@ let serviceCarouselCardTimeout;
 let currentDisplayImg;
 let currentDisplayImgIndex = 0;
 
-currentDisplayImg = displayImgPart[currentDisplayImgIndex]
+currentDisplayImg = displayImgPart[currentDisplayImgIndex];
+console.log(currentDisplayImg, 'currentDisplayImg');
+console.log(currentDisplayImgIndex, 'currentDisplayImgIndex');
 currentDisplayImg.appendChild(placeHolderCard);
 
 serviceCarouselCardTimeout = setTimeout(() => {

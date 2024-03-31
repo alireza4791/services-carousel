@@ -5,8 +5,7 @@ let serviceCardText = document.querySelectorAll('.gallery-info__subtitle');
 let serviceDisplayImg = document.querySelector('.display-image');
 let displayImgPart = document.querySelectorAll('.display-img-part');
 
-serviceCardTitle[0].classList.add("is--active");
-serviceCardText[0].classList.add("is--active");
+
 
 let placeHolderCard;
 let zIndexCounter = 0;
@@ -128,14 +127,14 @@ let touchStartX; // Variable to store the initial touch position
 let touchScrollLeft; // Variable to store the initial scroll position
 
 sliders.forEach((slider, index) => {
-  slider.addEventListener("mousedown", handleMouseDown);
-  slider.addEventListener("touchstart", handleTouchStart);
-  slider.addEventListener("mouseleave", handleMouseLeave);
-  slider.addEventListener("mouseup", handleMouseUp);
-  slider.addEventListener("touchend", handleTouchEnd);
-  slider.addEventListener("mousemove", handleMouseMove);
-  slider.addEventListener("touchmove", handleTouchMove);
-  slider.addEventListener("wheel", handleWheel);
+    slider.addEventListener("mousedown", handleMouseDown);
+    slider.addEventListener("touchstart", handleTouchStart);
+    slider.addEventListener("mouseleave", handleMouseLeave);
+    slider.addEventListener("mouseup", handleMouseUp);
+    slider.addEventListener("touchend", handleTouchEnd);
+    slider.addEventListener("mousemove", handleMouseMove);
+    slider.addEventListener("touchmove", handleTouchMove);
+    slider.addEventListener("wheel", handleWheel);
 });
 
 var velX = 0;
@@ -143,81 +142,87 @@ var momentumID;
 let currentSliderIndex = 0;
 
 function beginMomentumTracking(index) {
-  currentSliderIndex = index;
-  cancelMomentumTracking();
-  momentumID = requestAnimationFrame(momentumLoop);
+    currentSliderIndex = index;
+    cancelMomentumTracking();
+    momentumID = requestAnimationFrame(momentumLoop);
 }
 
 function cancelMomentumTracking() {
-  cancelAnimationFrame(momentumID);
+    cancelAnimationFrame(momentumID);
 }
 
 function momentumLoop() {
-  sliders[currentSliderIndex].scrollLeft += velX;
-  velX *= 0.955;
-  if (Math.abs(velX) > 0.5) {
-    momentumID = requestAnimationFrame(momentumLoop);
-  }
+    sliders[currentSliderIndex].scrollLeft += velX;
+    velX *= 0.955;
+    if (Math.abs(velX) > 0.5) {
+        momentumID = requestAnimationFrame(momentumLoop);
+    }
 }
 
 function handleMouseDown(e) {
-  isDown = true;
-  const slider = e.currentTarget;
-  slider.classList.add("active");
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-  cancelMomentumTracking();
+    isDown = true;
+    const slider = e.currentTarget;
+    slider.classList.add("active");
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    cancelMomentumTracking();
 }
 
 function handleTouchStart(e) {
-  isDown = true;
-  const slider = e.currentTarget;
-  slider.classList.add("active");
-  const touch = e.touches[0];
-  touchStartX = touch.pageX - slider.offsetLeft;
-  touchScrollLeft = slider.scrollLeft;
-  cancelMomentumTracking();
+    isDown = true;
+    const slider = e.currentTarget;
+    slider.classList.add("active");
+    const touch = e.touches[0];
+    touchStartX = touch.pageX - slider.offsetLeft;
+    touchScrollLeft = slider.scrollLeft;
+    cancelMomentumTracking();
 }
 
 function handleMouseLeave() {
-  isDown = false;
-  this.classList.remove("active");
+    isDown = false;
+    this.classList.remove("active");
 }
 
 function handleMouseUp() {
-  isDown = false;
-  this.classList.remove("active");
-  beginMomentumTracking(Array.from(sliders).indexOf(this));
+    isDown = false;
+    this.classList.remove("active");
+    beginMomentumTracking(Array.from(sliders).indexOf(this));
 }
 
 function handleTouchEnd() {
-  isDown = false;
-  this.classList.remove("active");
-  beginMomentumTracking(Array.from(sliders).indexOf(this));
+    isDown = false;
+    this.classList.remove("active");
+    beginMomentumTracking(Array.from(sliders).indexOf(this));
 }
 
 function handleMouseMove(e) {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - this.offsetLeft;
-  const walk = (x - startX) * 3;
-  const prevScrollLeft = this.scrollLeft;
-  this.scrollLeft = scrollLeft - walk;
-  velX = this.scrollLeft - prevScrollLeft;
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - this.offsetLeft;
+    const walk = (x - startX) * 3;
+    const prevScrollLeft = this.scrollLeft;
+    this.scrollLeft = scrollLeft - walk;
+    velX = this.scrollLeft - prevScrollLeft;
 }
 
 function handleTouchMove(e) {
-  if (!isDown) return;
-  e.preventDefault();
-  const slider = e.currentTarget;
-  const touch = e.touches[0];
-  const x = touch.pageX - slider.offsetLeft;
-  const walk = (x - touchStartX) * 3;
-  const prevScrollLeft = slider.scrollLeft;
-  slider.scrollLeft = touchScrollLeft - walk;
-  velX = slider.scrollLeft - prevScrollLeft;
+    if (!isDown) return;
+    e.preventDefault();
+    const slider = e.currentTarget;
+    const touch = e.touches[0];
+    const x = touch.pageX - slider.offsetLeft;
+    const walk = (x - touchStartX) * 3;
+    const prevScrollLeft = slider.scrollLeft;
+    slider.scrollLeft = touchScrollLeft - walk;
+    velX = slider.scrollLeft - prevScrollLeft;
 }
 
 function handleWheel(e) {
-  cancelMomentumTracking();
+    cancelMomentumTracking();
 }
+
+
+window.addEventListener('load', () => {
+    serviceCardTitle[0].classList.add("is--active");
+    serviceCardText[0].classList.add("is--active");
+})

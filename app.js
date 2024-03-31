@@ -116,68 +116,108 @@ carouselServiceCards.forEach((card, index) => {
 
 
 //gallery slider
-const slider = document.querySelector(".is--items");
-let wrapper = document.querySelector(".is--grid-container");
-const firstCardWidth = slider.querySelector(".is--item").offsetWidth;
+// const slider = document.querySelector(".is--items");
+// const firstCardWidth = slider.querySelector(".is--item").offsetWidth;
+const sliders = document.querySelectorAll(".is--items");
+const firstCardWidth = sliders[0].querySelector(".is--item").offsetWidth;
 let isDown = false;
 let startX;
 let scrollLeft;
 let timeoutId;
-let isAutoPlay = false;
+let touchStartX; // Variable to store the initial touch position
+let touchScrollLeft; // Variable to store the initial scroll position
 
-slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    slider.classList.add("active");
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-    cancelMomentumTracking();
+sliders.forEach((slider, index) => {
+  slider.addEventListener("mousedown", handleMouseDown);
+  slider.addEventListener("touchstart", handleTouchStart);
+  slider.addEventListener("mouseleave", handleMouseLeave);
+  slider.addEventListener("mouseup", handleMouseUp);
+  slider.addEventListener("touchend", handleTouchEnd);
+  slider.addEventListener("mousemove", handleMouseMove);
+  slider.addEventListener("touchmove", handleTouchMove);
+  slider.addEventListener("wheel", handleWheel);
 });
-
-slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("active");
-});
-
-slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("active");
-    beginMomentumTracking();
-});
-
-slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 3; //scroll-fast
-    var prevScrollLeft = slider.scrollLeft;
-    slider.scrollLeft = scrollLeft - walk;
-    velX = slider.scrollLeft - prevScrollLeft;
-});
-
-const autoPlay = () => {
-    if (window.innerWidth < 800 || !isAutoPlay) return;
-    timeoutId = setTimeout(() => (slider.scrollLeft += firstCardWidth), 2500);
-};
-autoPlay();
 
 var velX = 0;
 var momentumID;
+let currentSliderIndex = 0;
 
-slider.addEventListener("wheel", (e) => {
-    cancelMomentumTracking();
-});
-
-function beginMomentumTracking() {
-    cancelMomentumTracking();
-    momentumID = requestAnimationFrame(momentumLoop);
+function beginMomentumTracking(index) {
+  currentSliderIndex = index;
+  cancelMomentumTracking();
+  momentumID = requestAnimationFrame(momentumLoop);
 }
+
 function cancelMomentumTracking() {
-    cancelAnimationFrame(momentumID);
+  cancelAnimationFrame(momentumID);
 }
+
 function momentumLoop() {
-    slider.scrollLeft += velX;
-    velX *= 0.955;
-    if (Math.abs(velX) > 0.5) {
-        momentumID = requestAnimationFrame(momentumLoop);
-    }
+  sliders[currentSliderIndex].scrollLeft += velX;
+  velX *= 0.955;
+  if (Math.abs(velX) > 0.5) {
+    momentumID = requestAnimationFrame(momentumLoop);
+  }
+}
+
+function handleMouseDown(e) {
+  isDown = true;
+  const slider = e.currentTarget;
+  slider.classList.add("active");
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+  cancelMomentumTracking();
+}
+
+function handleTouchStart(e) {
+  isDown = true;
+  const slider = e.currentTarget;
+  slider.classList.add("active");
+  const touch = e.touches[0];
+  touchStartX = touch.pageX - slider.offsetLeft;
+  touchScrollLeft = slider.scrollLeft;
+  cancelMomentumTracking();
+}
+
+function handleMouseLeave() {
+  isDown = false;
+  this.classList.remove("active");
+}
+
+function handleMouseUp() {
+  isDown = false;
+  this.classList.remove("active");
+  beginMomentumTracking(Array.from(sliders).indexOf(this));
+}
+
+function handleTouchEnd() {
+  isDown = false;
+  this.classList.remove("active");
+  beginMomentumTracking(Array.from(sliders).indexOf(this));
+}
+
+function handleMouseMove(e) {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - this.offsetLeft;
+  const walk = (x - startX) * 3;
+  const prevScrollLeft = this.scrollLeft;
+  this.scrollLeft = scrollLeft - walk;
+  velX = this.scrollLeft - prevScrollLeft;
+}
+
+function handleTouchMove(e) {
+  if (!isDown) return;
+  e.preventDefault();
+  const slider = e.currentTarget;
+  const touch = e.touches[0];
+  const x = touch.pageX - slider.offsetLeft;
+  const walk = (x - touchStartX) * 3;
+  const prevScrollLeft = slider.scrollLeft;
+  slider.scrollLeft = touchScrollLeft - walk;
+  velX = slider.scrollLeft - prevScrollLeft;
+}
+
+function handleWheel(e) {
+  cancelMomentumTracking();
 }
